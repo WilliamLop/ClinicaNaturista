@@ -8,7 +8,7 @@
     <property name="hibernate.connection.username">root</property>
     <mapping resource="Mapeo/Cita.xml"/>
     <mapping resource="Mapeo/Especialidad.xml"/>
-    <mapping resource="Mapeo/Medicamento.hbm.xml"/>
-    <mapping resource="Mapeo/Formula.hbm.xml"/>
+    <mapping resource="Mapeo/Medicamento.xml"/>
+    <mapping resource="Mapeo/Formula.xml"/>
   </session-factory>
 </hibernate-configuration>
