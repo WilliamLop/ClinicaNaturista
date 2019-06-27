@@ -10,13 +10,11 @@ package Modelo;
  * @author ADMIN
  */
 public class FormulaProducto {
-    private int idformproducto;
+    private int idformproducto,cantidad;
+    private double precioUnitario,iva;
     private String dosis;
     private Formula idformula;
-    private Medicamento idproducto;
-    private int cantidad;
-    private double precioUnitario;
-    private double iva;
+    private Medicamento idProducto;
 
     public int getIdformproducto() {
         return idformproducto;
@@ -40,14 +38,6 @@ public class FormulaProducto {
 
     public void setIdformula(Formula idformula) {
         this.idformula = idformula;
-    }
-
-    public Medicamento getIdproducto() {
-        return idproducto;
-    }
-
-    public void setIdproducto(Medicamento idproducto) {
-        this.idproducto = idproducto;
     }
 
     public int getCantidad() {
@@ -74,6 +64,15 @@ public class FormulaProducto {
         this.iva = iva;
     }
 
-    
-    
+    public void setIva(int iva) {
+        this.iva = iva;
+    }
+
+    public Medicamento getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Medicamento idProducto) {
+        this.idProducto = idProducto;
+    }    
 }
