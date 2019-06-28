@@ -13,7 +13,10 @@ public class Formula {
     private int idformula;
     private String descripcion;
     private Cita idcita;
-
+    
+    public Formula() {
+    }
+    
     public int getIdformula() {
         return idformula;
     }
@@ -37,7 +40,5 @@ public class Formula {
     public void setIdcita(Cita idcita) {
         this.idcita = idcita;
     }
-
-    
-    
+   
 }
