@@ -14,7 +14,7 @@ public class Medicamento {
     private String codigo;
     private String nombre;
     private double precio;
-    private int cantidad;
+    private int cantDisp;
     private String descripcion;
     private String foto;
 
@@ -50,12 +50,12 @@ public class Medicamento {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantDisp() {
+        return cantDisp;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantDisp(int cantDisp) {
+        this.cantDisp = cantDisp;
     }
 
     public String getDescripcion() {
