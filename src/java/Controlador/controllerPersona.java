@@ -9,6 +9,9 @@ import HibernateUtil.HibernateUtil;
 import Modelo.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,22 +58,22 @@ public class controllerPersona extends HttpServlet {
         if(request.getMethod().equalsIgnoreCase("POST")){
             Session sesion=HibernateUtil.getSessionFactory().openSession();
             Persona per = new Persona();
-            per.setDocumentid(request.getParameter("Cedula"));
-            per.setNombre(request.getParameter("Nombre"));
-            per.setApellido(request.getParameter("Apellido"));            
-            per.setTelefono(request.getParameter("Cedula"));
+            per.setDocumentid(request.getParameter("txtDocumentid"));
+            per.setNombre(request.getParameter("txtNombre"));
+            per.setApellido(request.getParameter("txtApellido"));            
+            per.setTelefono(request.getParameter("txtTelefono"));
             Date Fn;
             try{
-            Fn=new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("FechaNacimiento"));
+            Fn=new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("txtFechaNacimiento"));
              per.setFechaNacimiento(Fn);
             }catch (ParseException ex){
                 
-            }per.setGenero(request.getParameter("Cedula"));
-            per.setRh(request.getParameter("Cedula"));
-            per.setFoto(request.getParameter("Telefono"));
-            per.setCorreo(request.getParameter("Telefono"));
-            per.setPassword(request.getParameter("Telefono"));
-            per.setRol(request.getParameter("Telefono"));
+            }per.setGenero(request.getParameter("txtGenero"));
+            per.setRh(request.getParameter("txtRh"));
+            per.setFoto(request.getParameter("txtFoto"));
+            per.setCorreo(request.getParameter("txtCorreo"));
+            per.setPassword(getMD5(request.getParameter("txtPassword")));
+            per.setRol(request.getParameter("txtRol"));
             sesion.beginTransaction();
             sesion.save(per);
             sesion.getTransaction().commit();
@@ -90,22 +93,22 @@ public class controllerPersona extends HttpServlet {
         int id =Integer.parseInt(request.getParameter("id"));        
         Persona per=(Persona) sesion.get(Persona.class,id);        
         if(request.getMethod().equalsIgnoreCase("POST")){        
-            per.setDocumentid(request.getParameter("Cedula"));
-            per.setNombre(request.getParameter("Nombre"));
-            per.setApellido(request.getParameter("Apellido"));            
-            per.setTelefono(request.getParameter("Cedula"));
+            per.setDocumentid(request.getParameter("txtDocumentid"));
+            per.setNombre(request.getParameter("txtNombre"));
+            per.setApellido(request.getParameter("txtApellido"));            
+            per.setTelefono(request.getParameter("txtTelefono"));
             Date Fn;
             try{
-            Fn=new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("FechaNacimiento"));
+            Fn=new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("txtFechaNacimiento"));
              per.setFechaNacimiento(Fn);
             }catch (ParseException ex){
                 
-            }per.setGenero(request.getParameter("Cedula"));
-            per.setRh(request.getParameter("Cedula"));
-            per.setFoto(request.getParameter("Telefono"));
-            per.setCorreo(request.getParameter("Telefono"));
-            per.setPassword(request.getParameter("Telefono"));
-            per.setRol(request.getParameter("Telefono"));
+            }per.setGenero(request.getParameter("txtGenero"));
+            per.setRh(request.getParameter("txtRh"));
+            per.setFoto(request.getParameter("txtFoto"));
+            per.setCorreo(request.getParameter("txtCorreo"));
+            per.setPassword(getMD5(request.getParameter("txtPassword")));
+            per.setRol(request.getParameter("txtRol"));
             sesion.beginTransaction();
             sesion.beginTransaction();
             sesion.saveOrUpdate(per);
@@ -146,7 +149,22 @@ public class controllerPersona extends HttpServlet {
         }
         sesion.close();
      }
-    
+    public static String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+
+            while (hashtext.length() < 32) {
+            hashtext = "0" + hashtext;
+            }
+            return hashtext;
+            }
+        catch (NoSuchAlgorithmException e) {
+        throw new RuntimeException(e);
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
