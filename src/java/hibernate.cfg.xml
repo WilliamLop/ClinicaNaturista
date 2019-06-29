@@ -10,5 +10,6 @@
     <mapping resource="Mapeo/Especialidad.xml"/>
     <mapping resource="Mapeo/Medicamento.xml"/>
     <mapping resource="Mapeo/Formula.xml"/>
+    <mapping resource="Mapeo/Persona.xml"/>
   </session-factory>
 </hibernate-configuration>
