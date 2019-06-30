@@ -19,7 +19,7 @@
             </many-to-one>
             
             <many-to-one name="idespecialidad" class="Modelo.Especialidad" fetch="select">
-                <column name="id_especialidad" noy-null="true"/>
+                <column name="id_especialidad" not-null="true"/>
             </many-to-one>
             
             <many-to-one name="idlugar" class="Modelo.LugarAtencion" fetch="select">

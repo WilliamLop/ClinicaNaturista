@@ -56,8 +56,8 @@ public class controllerFormula extends HttpServlet {
     
      private void create(HttpServletRequest request, HttpServletResponse response){
       if(request.getMethod().equalsIgnoreCase("POST")){   
-         String descripcion= request.getParameter("descripcion");
-         String Cita = request.getParameter("txtCita");
+         String descripcion= request.getParameter("txtDescripcion");
+         String Cita = request.getParameter("cmbCita");
   
          Formula fla = new Formula();
          fla.setDescripcion(descripcion);
@@ -99,7 +99,7 @@ public class controllerFormula extends HttpServlet {
         Formula fla = (Formula) sesion.get(Formula.class,id);
         
          if(request.getMethod().equalsIgnoreCase("POST")){   
-         String descripcion= request.getParameter("descripcion");
+         String descripcion= request.getParameter("txtDescripcion");
          String Cita = request.getParameter("txtCita");
       
          fla.setDescripcion(descripcion);
