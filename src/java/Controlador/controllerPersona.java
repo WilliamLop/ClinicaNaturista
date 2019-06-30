@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 /**
@@ -42,7 +43,15 @@ public class controllerPersona extends HttpServlet {
         switch(action){
             case "create":
                 create(request,response);
-                break;    
+                break;
+            case "login":
+                login(request,response);
+                break;
+            case "logout":
+                HttpSession sesionUserClose = request.getSession();
+                sesionUserClose.invalidate();
+                response.sendRedirect("Login.jsp");
+                break;
             case"update":
                 update(request,response);
                 break;    
@@ -163,6 +172,38 @@ public class controllerPersona extends HttpServlet {
             }
         catch (NoSuchAlgorithmException e) {
         throw new RuntimeException(e);
+        }
+    }
+    private void login(HttpServletRequest request, HttpServletResponse response){        
+        Session sesion=HibernateUtil.getSessionFactory().openSession();
+        Persona userData = new Persona();
+        userData = (Persona) sesion.createQuery("FROM Persona AS p WHERE p.correo = '"+request.getParameter("txtUser")+"'").uniqueResult();
+        if ( !(userData==null)  ){            
+            if ( (userData.getPassword().equals(getMD5(request.getParameter("txtPassword"))) )){
+                try{
+                    HttpSession sesionUser = request.getSession();
+                    sesionUser.setAttribute("UsuarioId", userData.getIdpersona());
+                    sesionUser.setAttribute("UsuarioFoto", userData.getFoto());
+                    sesionUser.setAttribute("UsuarioCorreo", userData.getCorreo());
+                    sesionUser.setAttribute("Usuario", userData.getNombre());
+                    sesionUser.setAttribute("Perfil", userData.getRol());
+                    request.getRequestDispatcher("Usuario?a=administratorPanel").include(request, response);
+                }catch(ServletException | IOException ex){
+                    System.out.println("Error en admin :"+ex.getMessage());
+                }                
+            }else{
+                try{
+                request.getRequestDispatcher("Login.jsp").include(request, response);
+                }catch(ServletException | IOException ex){
+                System.out.println("Error en admin :"+ex.getMessage());
+                }
+            }
+        }else{
+            try{
+            request.getRequestDispatcher("Login.jsp").include(request, response);
+            }catch(ServletException | IOException ex){
+            System.out.println("Error en admin :"+ex.getMessage());
+            }     
         }
     }
 
