@@ -233,5 +233,5 @@
             // Bar Chart #flotBarChart End
         });
     </script>
-</body>
+    </body>
 </html>

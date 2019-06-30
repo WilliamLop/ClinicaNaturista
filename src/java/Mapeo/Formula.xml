@@ -7,8 +7,8 @@
             <generator class="identity" />
         </id>            
         <property name="descripcion" type="string" column="descripcion" />
-        <one-to-one name="idcita" class="Modelo.Cita" fetch="select">
+        <many-to-one name="idcita" class="Modelo.Cita" fetch="select">
             <column name="id_cita" not-null="true"/>
-        </one-to-one>
+        </many-to-one>
     </class>
 </hibernate-mapping>
