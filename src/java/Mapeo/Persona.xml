@@ -3,18 +3,18 @@
 <hibernate-mapping>
     <class name="Modelo.Persona" table="persona">
         <id name="idpersona" column="id_persona">
-      <generator class="identity"/>
-  </id>
-  <property name="documentid" type="string" column="documentId"/>
-  <property name="nombre" type="string" column="nombre"/>
-  <property name="apellido" type="string" column="apellido"/>
-  <property name="telefono" type="string" column="telefono"/>
-  <property name="fechaNacimiento" type="date" column="fechaNacimiento"/>
-  <property name="genero" type="string" column="genero"/>
-  <property name="rh" type="string" column="rh"/>
-  <property name="foto" type="string" column="foto"/>
-  <property name="password" type="string" column="password"/>
-  <property name="rol" type="string" column="rol"/>
+            <generator class="identity"/>
+        </id>
+        <property name="documentid" type="string" column="documentoId"/>
+        <property name="nombre" type="string" column="nombre"/>
+        <property name="apellido" type="string" column="apellido"/>
+        <property name="telefono" type="string" column="telefono"/>
+        <property name="fechaNacimiento" type="date" column="fechaNacimiento"/>
+        <property name="genero" type="string" column="genero"/>
+        <property name="rh" type="string" column="rh"/>
+        <property name="foto" type="string" column="foto"/>
+        <property name="password" type="string" column="password"/>
+        <property name="rol" type="string" column="rol"/>
     </class>
 </hibernate-mapping>
 

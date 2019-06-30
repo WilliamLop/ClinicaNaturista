@@ -65,7 +65,7 @@ public class controllerPersona extends HttpServlet {
     }    
     private void create(HttpServletRequest request, HttpServletResponse response){        
         if(request.getMethod().equalsIgnoreCase("POST")){
-            Session sesion=HibernateUtil.getSessionFactory().openSession();
+            Session sesion= HibernateUtil.getSessionFactory().openSession();
             Persona per = new Persona();
             per.setDocumentid(request.getParameter("txtDocumentid"));
             per.setNombre(request.getParameter("txtNombre"));
